@@ -1,8 +1,13 @@
-from xml.dom import minidom
 
-doc = minidom.parse("main.xml")
+import xml.etree.ElementTree as ET
+tree = ET.parse('main.xml')
+root = tree.getroot()
 
-# doc.getElementsByTagName returns NodeList
-name = doc.getElementsByClassName(".company")
-print((name))
+
+
+for child in root.findall('company'):
+    data ={
+        "name": child.find('name').text
+    }
+    print(data["name"])
 #py main.py
